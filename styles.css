@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+.answers {
+    border: 1px solid;
+    background-color: blanchedalmond;
+    text-align: center;
+}
+
+.answer {
+    border-bottom: 1px solid;
+}
+
+.answer:last-of-type {
+    border: none;
+}

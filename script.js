@@ -223,19 +223,21 @@ const questions = [     // Ein Array, welches die einzelnen Fragen als Objekte s
 
 //let a = document.getElementById('displayQuestion').innerHTML;
 
+const numOfQuestions = 10;      // Die Anzahl der Fragen, nachder das Quiz vorbei ist.
+
 let pointCounter = 0;           // Zwei einfache Counter, welche zählen, wie viele Fragen bereits bearbeitet wurden,
 let questionCounter = 0;        // und wie viele davon richtig beantwortet wurden.
 let visibleQuestion = 0;        // Index der gerade angezeigten Frage
 
 console.log(questions);
 
-function ersteFrage() {         // Eine Funktion die die erste Frage lädt, wenn die Seite aufgerufen wird.
+/*function ersteFrage() {         // Eine Funktion die die erste Frage lädt, wenn die Seite aufgerufen wird. 
     document.getElementById('displayQuestion').innerHTML = questions[0].question;
     document.getElementById('displayAnswerA').innerHTML = questions[0].answers[0].answer;
     document.getElementById('displayAnswerB').innerHTML = questions[0].answers[1].answer;
     document.getElementById('displayAnswerC').innerHTML = questions[0].answers[2].answer;
     document.getElementById('displayAnswerD').innerHTML = questions[0].answers[3].answer;
-};
+};*/
 
 const randomIndex = () => {     // Bestimmt einen random Array-Index, damit eine zufällige Frage als
                                 // nächstes ausgewählt wird
@@ -246,6 +248,7 @@ const randomIndex = () => {     // Bestimmt einen random Array-Index, damit eine
 const randomQuestion = () => {  // Lädt beim aufrufen eine zufällige neue Frage.
     const i = randomIndex();
     visibleQuestion = i;
+    mixArray(questions[i].answers);
     document.getElementById('displayQuestion').innerHTML = questions[i].question;
     document.getElementById('displayAnswerA').innerHTML = questions[i].answers[0].answer;
     document.getElementById('displayAnswerB').innerHTML = questions[i].answers[1].answer;
@@ -257,19 +260,56 @@ const firstChoice = () => {     // Wird eine Antwort angeklickt, so wird anhand 
                                 // der Punktestand angepasst.
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[0].key;
+    (questionCounter >= numOfQuestions) && ending();
 };
 
 const secondChoice = () => {
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[1].key;
+    (questionCounter >= numOfQuestions) && ending();
 };
 
 const thirdChoice = () => {
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[2].key;
+    (questionCounter >= numOfQuestions) && ending();
 };
 
 const fourthChoice = () => {
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[3].key;
+    (questionCounter >= numOfQuestions) && ending();
 };
+
+// Diese Funktion nimmt ein beliebig großes Array und vermischt die Elemente zufällig.
+const mixArray = (arr) => {
+    const mixer = Math.floor((Math.random()*1000))%arr.length;
+    for(let i = 0; i<arr.length/2;i++) {
+        [arr[i],arr[(Math.floor(i+mixer/2)+1)%arr.length]] = [arr[(Math.floor(i+mixer/2)+1)%arr.length],arr[i]];
+    }
+}
+
+// Grundinitialisierung der Antwortarrays, bevor die erste Frage gestellt wird, um die Antwortmöglichkeiten zu mischen.
+const initializingRandomPlacedQuestions = (arr) => {
+    for(let i = 0; i<arr.length; i++) {
+        mixArray(arr[i].answers);
+    }
+}
+
+const starting = () => {    // Diese Funktion startet das Quiz, blendet den Startbildschirm aus und lädt die erste Frage.
+    initializingRandomPlacedQuestions(questions);
+    randomQuestion();
+    document.getElementById('welcome').style.display = "none";
+    document.getElementById('playing').style.display = "block";
+    document.getElementById('aftermatch').style.display = "none";
+}
+
+const ending = () => {      // Diese Funktion beendet das Quiz, sie wird aufgerufen, sobald der QuestionCounter >= numOfQuestions ist.
+    document.getElementById('numPoints').innerHTML = pointCounter;
+    document.getElementById('numQuestions').innerHTML = questionCounter;
+    pointCounter = questionCounter = 0;
+    document.getElementById('playing').style.display = "none";
+    document.getElementById('aftermatch').style.display = "block";
+}
+
+const testArr = [0,1,2,3,4,5,6,7,8,9];      // Ein Array zum Testen der Array-Vertauschung.

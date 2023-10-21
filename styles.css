@@ -19,3 +19,11 @@ body {
 .answer:last-of-type {
     border: none;
 }
+
+.playing {
+    display: none;
+}
+
+.aftermatch {
+    display: none;
+}

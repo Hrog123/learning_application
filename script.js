@@ -1,11 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
 const questions = [     // Ein Array, welches die einzelnen Fragen als Objekte speichert.
     {                   // Die Fragen werden als Objektke implementiert, wobei die Frage im question value 
-                        // als string gespeichert ist, und die Antwortmöglichkeiten im answers value als Array.
+        // als string gespeichert ist, und die Antwortmöglichkeiten im answers value als Array.
         question: "Wo beginnt ein Beweis über vollständige Induktion?",
         answers: [      // Dieses Array beinhaltet die Antworten, welcher stets als Objekte mit answer und key value
-                        // implementiert werden. Im answer value wird die Antwort als String gespeichert, 
-                        // im key value wird die zugehörige Punktzahl gespeichert. 1 für eine korrekte Antwort,
-                        // 0 für eine falsche.
+            // implementiert werden. Im answer value wird die Antwort als String gespeichert, 
+            // im key value wird die zugehörige Punktzahl gespeichert. 1 für eine korrekte Antwort,
+            // 0 für eine falsche.
             {
                 answer: "Bei n = 0",
                 key: 0
@@ -65,163 +78,10 @@ const questions = [     // Ein Array, welches die einzelnen Fragen als Objekte s
                 key: 0
             }
         ]
-    }/*,
-    {
-        question: "Wo beginnt ein Beweis über vollständige Induktion?",
-        answers: [
-            {
-                answer: "Bei n = 0",
-                key: 0
-            },
-            {
-                answer: "Bei n = 1",
-                key: 0
-            },
-            {
-                answer: "Bei n = x, eben dort, ab wo wir es beweisen wollen.",
-                key: 1
-            },
-            {
-                answer: "Bei N = 0",
-                key: 0
-            }
-        ]
-    },
-    {
-        question: "Wo beginnt ein Beweis über vollständige Induktion?",
-        answers: [
-            {
-                answer: "Bei n = 0",
-                key: 0
-            },
-            {
-                answer: "Bei n = 1",
-                key: 0
-            },
-            {
-                answer: "Bei n = x, eben dort, ab wo wir es beweisen wollen.",
-                key: 1
-            },
-            {
-                answer: "Bei N = 0",
-                key: 0
-            }
-        ]
-    },
-    {
-        question: "Wo beginnt ein Beweis über vollständige Induktion?",
-        answers: [
-            {
-                answer: "Bei n = 0",
-                key: 0
-            },
-            {
-                answer: "Bei n = 1",
-                key: 0
-            },
-            {
-                answer: "Bei n = x, eben dort, ab wo wir es beweisen wollen.",
-                key: 1
-            },
-            {
-                answer: "Bei N = 0",
-                key: 0
-            }
-        ]
-    },
-    {
-        question: "Wo beginnt ein Beweis über vollständige Induktion?",
-        answers: [
-            {
-                answer: "Bei n = 0",
-                key: 0
-            },
-            {
-                answer: "Bei n = 1",
-                key: 0
-            },
-            {
-                answer: "Bei n = x, eben dort, ab wo wir es beweisen wollen.",
-                key: 1
-            },
-            {
-                answer: "Bei N = 0",
-                key: 0
-            }
-        ]
-    },
-    {
-        question: "Wo beginnt ein Beweis über vollständige Induktion?",
-        answers: [
-            {
-                answer: "Bei n = 0",
-                key: 0
-            },
-            {
-                answer: "Bei n = 1",
-                key: 0
-            },
-            {
-                answer: "Bei n = x, eben dort, ab wo wir es beweisen wollen.",
-                key: 1
-            },
-            {
-                answer: "Bei N = 0",
-                key: 0
-            }
-        ]
-    },
-    {
-        question: "Wo beginnt ein Beweis über vollständige Induktion?",
-        answers: [
-            {
-                answer: "Bei n = 0",
-                key: 0
-            },
-            {
-                answer: "Bei n = 1",
-                key: 0
-            },
-            {
-                answer: "Bei n = x, eben dort, ab wo wir es beweisen wollen.",
-                key: 1
-            },
-            {
-                answer: "Bei N = 0",
-                key: 0
-            }
-        ]
-    },
-    {
-        question: "Wo beginnt ein Beweis über vollständige Induktion?",
-        answers: [
-            {
-                answer: "Bei n = 0",
-                key: 0
-            },
-            {
-                answer: "Bei n = 1",
-                key: 0
-            },
-            {
-                answer: "Bei n = x, eben dort, ab wo wir es beweisen wollen.",
-                key: 1
-            },
-            {
-                answer: "Bei N = 0",
-                key: 0
-            }
-        ]
-    },*/
+    }
 ];
 
 
-// Nicht mehr benötigte Funktionen auskommentiert
-/*const display = {
-    question: document.getElementById('displayQuestion').innerHTML
-};*/
-
-//let a = document.getElementById('displayQuestion').innerHTML;
 
 const numOfQuestions = 10;      // Die Anzahl der Fragen, nachder das Quiz vorbei ist.
 
@@ -231,17 +91,11 @@ let visibleQuestion = 0;        // Index der gerade angezeigten Frage
 
 console.log(questions);
 
-/*function ersteFrage() {         // Eine Funktion die die erste Frage lädt, wenn die Seite aufgerufen wird. 
-    document.getElementById('displayQuestion').innerHTML = questions[0].question;
-    document.getElementById('displayAnswerA').innerHTML = questions[0].answers[0].answer;
-    document.getElementById('displayAnswerB').innerHTML = questions[0].answers[1].answer;
-    document.getElementById('displayAnswerC').innerHTML = questions[0].answers[2].answer;
-    document.getElementById('displayAnswerD').innerHTML = questions[0].answers[3].answer;
-};*/
+
 
 const randomIndex = () => {     // Bestimmt einen random Array-Index, damit eine zufällige Frage als
-                                // nächstes ausgewählt wird
-    let i = Math.floor((Math.random()*questions.length))%questions.length;
+    // nächstes ausgewählt wird
+    let i = Math.floor((Math.random() * questions.length)) % questions.length;
     return i;
 }
 
@@ -254,10 +108,25 @@ const randomQuestion = () => {  // Lädt beim aufrufen eine zufällige neue Frag
     document.getElementById('displayAnswerB').innerHTML = questions[i].answers[1].answer;
     document.getElementById('displayAnswerC').innerHTML = questions[i].answers[2].answer;
     document.getElementById('displayAnswerD').innerHTML = questions[i].answers[3].answer;
+
+    document.getElementById('Anzahl').innerHTML = questionCounter;
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 const firstChoice = () => {     // Wird eine Antwort angeklickt, so wird anhand des answers.key value
-                                // der Punktestand angepasst.
+    // der Punktestand angepasst.
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[0].key;
     (questionCounter >= numOfQuestions) && ending();
@@ -283,15 +152,15 @@ const fourthChoice = () => {
 
 // Diese Funktion nimmt ein beliebig großes Array und vermischt die Elemente zufällig.
 const mixArray = (arr) => {
-    const mixer = Math.floor((Math.random()*1000))%arr.length;
-    for(let i = 0; i<arr.length/2;i++) {
-        [arr[i],arr[(Math.floor(i+mixer/2)+1)%arr.length]] = [arr[(Math.floor(i+mixer/2)+1)%arr.length],arr[i]];
+    const mixer = Math.floor((Math.random() * 1000)) % arr.length;
+    for (let i = 0; i < arr.length / 2; i++) {
+        [arr[i], arr[(Math.floor(i + mixer / 2) + 1) % arr.length]] = [arr[(Math.floor(i + mixer / 2) + 1) % arr.length], arr[i]];
     }
 }
 
 // Grundinitialisierung der Antwortarrays, bevor die erste Frage gestellt wird, um die Antwortmöglichkeiten zu mischen.
 const initializingRandomPlacedQuestions = (arr) => {
-    for(let i = 0; i<arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
         mixArray(arr[i].answers);
     }
 }
@@ -312,4 +181,12 @@ const ending = () => {      // Diese Funktion beendet das Quiz, sie wird aufgeru
     document.getElementById('aftermatch').style.display = "block";
 }
 
-const testArr = [0,1,2,3,4,5,6,7,8,9];      // Ein Array zum Testen der Array-Vertauschung.
+const testArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];      // Ein Array zum Testen der Array-Vertauschung.
+
+
+
+
+
+
+
+

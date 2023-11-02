@@ -73,7 +73,8 @@ let startingTime = 0;           // Zeitstempel bei Beginn der ersten Frage
 let endingTime = 0;             // Zeitstempel bei Abschluss der letzten Frage
 let timeUsed = 0;               // Gesamtzeit die zur Beantwortung der Fragen genutzt wird.
 let usedQuestions = [-1];       // Gestelle Fragen
-let givenAnswers = [-1];        // Gegebene Antworten
+let givenAnswers = [-1];        // Gegebene Antwortvalues
+let givenAnswersText = [-1];    // Gegebene Antworttexte
 
 // console.log(questions);
 
@@ -103,24 +104,32 @@ const firstChoice = () => {     // Wird eine Antwort angeklickt, so wird anhand 
     // der Punktestand angepasst.
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[0].key;
+    givenAnswers.push(questions[visibleQuestion].answers[0].key);
+    givenAnswersText.push(questions[visibleQuestion].answers[0].answer);
     (questionCounter >= numOfQuestions) && ending();
 };
 
 const secondChoice = () => {
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[1].key;
+    givenAnswers.push(questions[visibleQuestion].answers[1].key);
+    givenAnswersText.push(questions[visibleQuestion].answers[1].answer);
     (questionCounter >= numOfQuestions) && ending();
 };
 
 const thirdChoice = () => {
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[2].key;
+    givenAnswers.push(questions[visibleQuestion].answers[2].key);
+    givenAnswersText.push(questions[visibleQuestion].answers[2].answer);
     (questionCounter >= numOfQuestions) && ending();
 };
 
 const fourthChoice = () => {
     questionCounter++;
     pointCounter += questions[visibleQuestion].answers[3].key;
+    givenAnswers.push(questions[visibleQuestion].answers[3].key);
+    givenAnswersText.push(questions[visibleQuestion].answers[3].answer);
     (questionCounter >= numOfQuestions) && ending();
 };
 
@@ -142,6 +151,7 @@ const initializingRandomPlacedQuestions = (arr) => {
 const starting = () => {    // Diese Funktion startet das Quiz, blendet den Startbildschirm aus und lädt die erste Frage.
     usedQuestions = [-1];
     givenAnswers = [-1];
+    givenAnswersText = [-1];
     initializingRandomPlacedQuestions(questions);
     randomQuestion();
     timerStart();
@@ -163,6 +173,7 @@ const back = () => {
     document.getElementById('playing').style.display = "none";
     document.getElementById('aftermatch').style.display = "none";
     document.getElementById('welcome').style.display = "block";
+    document.getElementById('detail').style.display = "none";
 }
 
 
@@ -201,6 +212,34 @@ const onlyOnce = (index) => {                       // Eine Funktion, die die be
     usedQuestions.push(index);
     //console.log(usedQuestions);
     return index;
+}
+
+const details = () => {                             // Eine Funktion, die die Detailanzeige ansteuert.
+    detailsContent();
+    document.getElementById('detail').style.display = "block";
+    document.getElementById('playing').style.display = "none";
+    document.getElementById('aftermatch').style.display = "none";
+    document.getElementById('welcome').style.display = "none";
+}
+
+const detailsContent = () => {                     // Eine Funktion, die die Detailanzeige ansteuert, und die geklickten Antwortworten mit korrekten vergleicht.
+    for(let i = 1; i < 11; i++) {
+        document.getElementById(`question${i}`).innerText = '"' + questions[usedQuestions[i]].question + '"';
+        document.getElementById(`answerUsed${i}`).innerText = '"' + givenAnswersText[i] + '"';
+        //givenAnswers[i] === 1 && (document.getElementById(`answerUsed${i}Value`).innerText = "Diese Antwort war korrekt!");
+        if (givenAnswers[i] === 1) {
+            document.getElementById(`answerUsed${i}Value`).innerText = "Diese Antwort war korrekt!";
+        } else {
+            let correctAnswer;
+            for (let j = 0; j<4; j++) {
+                if (questions[usedQuestions[i]].answers[j].key === 1) {
+                    correctAnswer = questions[usedQuestions[i]].answers[j].answer;
+                    break;
+                }
+            }
+            document.getElementById(`answerUsed${i}Value`).innerText = "Diese Antwort war leider falsch! Die korrekte Antwort wäre: \"" + correctAnswer + '"';
+        }
+    }
 }
 
 const testArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];      // Ein Array zum Testen der Array-Vertauschung.

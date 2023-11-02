@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 const questions = [     // Ein Array, welches die einzelnen Fragen als Objekte speichert.
     {                   // Die Fragen werden als Objektke implementiert, wobei die Frage im question value 
         // als string gespeichert ist, und die Antwortmöglichkeiten im answers value als Array.
@@ -178,15 +166,28 @@ const ending = () => {      // Diese Funktion beendet das Quiz, sie wird aufgeru
     document.getElementById('numQuestions').innerHTML = questionCounter;
     pointCounter = questionCounter = 0;
     document.getElementById('playing').style.display = "none";
-    document.getElementById('aftermatch').style.display = "block";
+    document.getElementById('aftermatch').style.display = "flex";
+}
+const back = () => {
+    document.getElementById('playing').style.display = "none";
+    document.getElementById('aftermatch').style.display = "none";
+    document.getElementById('welcome').style.display = "block";
 }
 
+
+const leaderboard = () => {
+    document.getElementById('playing').style.display = "none";
+    document.getElementById('aftermatch').style.display = "none";
+    document.getElementById('welcome').style.display = "none";
+    document.getElementById('leaderboard').style.display = "block";
+}
+const returnLeaderboard = () => {
+    document.getElementById('playing').style.display = "none";
+    document.getElementById('aftermatch').style.display = "none";
+    document.getElementById('welcome').style.display = "block";
+    document.getElementById('leaderboard').style.display = "none";
+}
+
+
 const testArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];      // Ein Array zum Testen der Array-Vertauschung.
-
-
-
-
-
-
-
 

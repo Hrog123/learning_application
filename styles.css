@@ -21,20 +21,27 @@ body {
 
 h1 {
 
-    font-size: 40px;
+    font-size: 6vw;
     font-family: 'Courier New', Courier, monospace;
 
 }
 
+@media only screen and (min-width: 950px) {
+    h1 {
+        font-size: 59px;
+    }
+}
+
 h3 {
 
-    font-size: 17px;
+    font-size: 1.35rem;
 }
 
 .options {
 
-    height: 600px;
-    width: 50%;
+    height: 50vh;
+    min-height: 500px;
+    width: 50vw;
 
     background-color: rgb(194, 170, 255);
     border: 2px solid;
@@ -45,6 +52,19 @@ h3 {
     justify-self: center;
 
     margin: auto
+}
+
+@media only screen and (max-width: 1280px) {
+    .options {
+        width: 75vw;
+    }    
+}
+
+
+@media only screen and (max-width: 900px) {
+    .options {
+        width: 95vw;
+    }    
 }
 
 .button {
@@ -79,6 +99,7 @@ button:hover {
 .question {
 
     margin-top: 5%;
+    font-size: 8vw;
 
 }
 
@@ -89,14 +110,21 @@ button:hover {
 
     align-items: center;
 
-    padding: 80px 30px 30px 50px;
-    padding-left: 30px;
+    padding: 0.25rem 0.15rem 0.2rem 0.15rem;
+    /*padding-left: 30px;*/
     height: 600px;
+}
+
+@media only screen and (max-width: 900px) {
+    .answers {
+        padding: none;
+    }
 }
 
 .answer {
 
-    height: 100px;
+    height: 12.5vh;
+    max-height: 134px;
     width: 50%;
 
 
@@ -123,6 +151,21 @@ button:hover {
 
 }
 
+@media only screen and (max-width: 1280px) {
+    .answer {
+        width: 75%;
+        margin-bottom: 20px;
+    }    
+}
+
+
+@media only screen and (max-width: 900px) {
+    .answer {
+        width: 95%;
+        margin-bottom: 40px;
+    }    
+}
+
 
 div .answer:hover {
 
@@ -132,6 +175,12 @@ div .answer:hover {
 
 }
 
+@media only screen and (max-width: 900px) {
+    div .answer:hover {
+        background: linear-gradient(gold,bisque);
+    }
+    
+}
 
 .fragen {
 
@@ -154,8 +203,8 @@ div .answer:hover {
 
 .aftermatch {
     display: none;
-    margin: 20%;
-    height: 500px;
+    margin: 20vh;
+    min-height: 500px;
     flex-direction: column;
     justify-content: center;
 
@@ -174,6 +223,27 @@ div .answer:hover {
 
 
 
+}
+
+@media only screen and (max-width: 1280px) {
+    .aftermatch {
+        margin: 10vh;
+    }
+    .refresh {
+        width: 75%;
+        margin-bottom: 20px;
+    }    
+}
+
+
+@media only screen and (max-width: 900px) {
+    .aftermatch {
+        margin: 1vh;
+    }
+    .refresh {
+        width: 95%;
+        margin-bottom: 40px;
+    }    
 }
 
 
@@ -231,4 +301,8 @@ div.returnL {
     list-style: none;
     font-family: sans-serif;
     font-size: 1.25rem;
+}
+
+@media only screen and (max-width:1080px) {
+
 }

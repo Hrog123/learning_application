@@ -163,12 +163,26 @@ const starting = () => {    // Diese Funktion startet das Quiz, blendet den Star
 const ending = () => {      // Diese Funktion beendet das Quiz, sie wird aufgerufen, sobald der QuestionCounter >= numOfQuestions ist.
     timerEnd();
     document.getElementById('timeNeeded').innerHTML = timeUsed;
-    document.getElementById('numPoints').innerHTML = pointCounter;
-    document.getElementById('numQuestions').innerHTML = questionCounter;
+    secureEnding();
     pointCounter = questionCounter = 0;
     document.getElementById('playing').style.display = "none";
     document.getElementById('aftermatch').style.display = "flex";
 }
+
+const secureEnding = () => {    // Sichert ab gegen Leute, die denken pointCounter zu ändern ist sinnvoll
+    let checker = 0;
+    for (i=1; i<11; i++) {
+        checker += givenAnswers[i];
+    }
+    if (checker === pointCounter) {
+        document.getElementById('numPoints').innerHTML = pointCounter;
+        document.getElementById('numQuestions').innerHTML = questionCounter;
+    } else {
+        document.getElementById('numPoints').innerHTML = "0";
+        document.getElementById('numQuestions').innerHTML = "10";
+    }
+}
+
 const back = () => {
     document.getElementById('playing').style.display = "none";
     document.getElementById('aftermatch').style.display = "none";
